@@ -23,19 +23,30 @@
 config-overrides.js
 
 ```
-config package.json:
-"jest": {
-"testMatch": [
-"**/__tests__/**/*.test.js"
-],
-"setupFilesAfterEnv": [
-"@testing-library/react/cleanup-after-each",
-"@testing-library/jest-dom/extend-expect"
-],
-"moduleNameMapper": {
-"^~/(.\*)": "<rootDir>/src/\$1"
-}
-},
+"scripts": {
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "coverage": "react-app-rewired test --coverage --watchAll=false",
+    "eject": "react-scripts eject"
+  },
+  "jest": {
+    "testMatch": [
+      "**/__test__/**/*.tests.js"
+    ],
+    "setupFilesAfterEnv": [
+      "@testing-library/jest-dom/extend-expect",
+      "jest-localstorage-mock"
+    ],
+    "moduleNameMapper": {
+      "^~/(.*)": "<rootDir>/src/$1"
+    },
+    "collectCoverageFrom": [
+      "!src/index.js",
+      "!src/services/api.js"
+    ],
+    "coverageDirectory": "__tests__/coverage"
+  },
 ```
 
 ## Criar Pasta
